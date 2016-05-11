@@ -167,11 +167,21 @@
 		        top:-2px;
 		        left:-2px;
 		    }
+		    .article-action-middle{
+		        position:fixed;
+		        z-index:10000;
+		        width:100%;
+		        height:40%;
+		        top:30%;
+		    }
 		</style>
 	</head>
 	<body>
 		<div id="root" class="container">
-		    <div id="top-nav" class="top-nav">
+		    <div class="m-article-action">
+		        <div class="article-action-middle" id="action_mid"></div>
+		    </div>
+		    <div id="top-nav" class="top-nav" style="display:none">
 		        <div class="icon-back"></div>
 		        <div class="nav-title">返回书架</div>
 		    </div>
@@ -216,7 +226,7 @@
 		            <li id="next_button">下一章</li>
 		        </ul>
 		    </div>
-		    <div id="bottom-nav" class="bottom-nav">
+		    <div id="bottom-nav" class="bottom-nav" style="display:none">
 		        <div id="fiction-menu" class="fiction fiction-menu">
 		            <div id="icon-menu" class="icon icon-menu"></div>
 		            <div id="menu-title" class="title menu-title">目录</div>
@@ -237,7 +247,7 @@
 		        </div>
 		    </div>
 
-		    <div id="font-container" class="nav-panel">
+		    <div id="font-container" class="nav-panel" style="display:none">
 		        <div class="child-mod">
 		            <span>字号</span>
 		            <button id="large-font" class="font-size-button">大</button>
@@ -285,8 +295,14 @@
 		        }
 		    })();
 		    
+		    var DOM={
+		        top_nav:$('#top-nav'),
+		        bottom_nav:$('#bottom-nav')
+		    }
+		    
 		    function main(){
 		        //todo  整个项目的入口函数    
+		        EventHandler();
 		    }
 		    
 		    function ReaderModel(){
@@ -299,6 +315,15 @@
 		    
 		    function EventHandler(){
 		        //todo 交互的事件绑定
+		        $('#action_mid').click(function(){
+		            if(DOM.top_nav.css('display')=='none'){
+		                DOM.bottom_nav.show();
+		                DOM.top_nav.show();
+		            }else{
+		                DOM.bottom_nav.hide();
+		                DOM.top_nav.hide();
+		            }
+		        })
 		    }
 		    
 		    main();
