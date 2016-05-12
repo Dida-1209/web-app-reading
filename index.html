@@ -154,11 +154,10 @@
 		        width:30px;
 		        height:30px;
 		        border-radius:15px;
-		        background:#fff;
 		        display:inline-block;
 		        vertical-align:-14px;
 		    }
-		    .bk-container-current{
+		    .bk-container-before-current{
 		        position:absolute;
 		        width:32px;
 		        height:32px;
@@ -256,19 +255,19 @@
 		        </div>
 		        <div class="child-mod">
 		            <span>背景</span>
-		            <div class="bk-container">
-		                <div class="bk-container-before current"></div>
+		            <div class="bk-container" style="background-color:#e9dfc7" <!--onclick="bk_container_click(0);"-->>
+		                <div class="bk-container-before bk-container-before-current"></div>
 		            </div>
-		            <div class="bk-container">
+		            <div class="bk-container" style="background-color:#dbf2c5" <!--onclick="bk_container_click(1);"-->>
 		                <div class="bk-container-before "></div>
 		            </div>
-		            <div class="bk-container">
+		            <div class="bk-container" style="background-color:#c69fdb" <!--onclick="bk_container_click(2);"-->>
 		                <div class="bk-container-before "></div>
 		            </div>
-		            <div class="bk-container">
+		            <div class="bk-container" style="background-color:#9fb4db" <!--onclick="bk_container_click(3);"-->>
 		                <div class="bk-container-before "></div>
 		            </div>
-		            <div class="bk-container">
+		            <div class="bk-container" style="background-color:#a1a1a1" <!--onclick="bk_container_click(4);"-->>
 		                <div class="bk-container-before "></div>
 		            </div>
 		        </div>
@@ -304,12 +303,14 @@
 		        initFontSize=14;
 		    }
 		    RootContainer.css('font_size',initFontSize);
+		    var initBackgroundColor=0;
 		    
 		    var DOM={
 		        top_nav:$('#top-nav'),
 		        bottom_nav:$('#bottom-nav'),
 		        font_container:$('#font-container'),
 		        icon_font:$('#icon-font')
+		        
 		    }
 		    
 		    function main(){
@@ -324,6 +325,10 @@
 		    function ReaderBaseFrame(){
 		        //todo 渲染基本的ui结构
 		    }
+		    
+//		    function bk_container_click(n){
+//		        $('.bk-container-before')[n].addClass('bk-container-before-current');
+//		    };
 		    
 		    function EventHandler(){
 		        //todo 交互的事件绑定
@@ -347,6 +352,10 @@
 		                DOM.font_container.hide();
 		                DOM.icon_font.removeClass('current');
 		            }
+		        });
+		        
+		        $('.bk-container').click(function(e){
+		        	$(this).
 		        });
 		        
 		        $('#icon-night').click(function(){
@@ -380,6 +389,7 @@
 		    }
 		    
 		    main();
+		    bk_container_click(0);
 		})();
 		
 		
