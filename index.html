@@ -297,6 +297,13 @@
 		    })();
 		    var Win=$(window);
 		    var Doc=$(document);
+		    var RootContainer=$('#fiction_container');
+		    var initFontSize=Util.StorageGetter('font_size');
+		    initFontSize=parseInt(initFontSize);
+		    if(!initFontSize){
+		        initFontSize=14;
+		    }
+		    RootContainer.css('font_size',initFontSize);
 		    
 		    var DOM={
 		        top_nav:$('#top-nav'),
@@ -328,6 +335,7 @@
 		                DOM.bottom_nav.hide();
 		                DOM.top_nav.hide();
 		                DOM.font_container.hide();
+		                DOM.icon_font.removeClass('current');
 		            }
 		        });
 		        
@@ -345,10 +353,29 @@
 		            //todo 触发背景切换的事件
 		        });
 		        
+		        $('#large-font').click(function(){
+		           if(initFontSize>20){
+		                return ;   
+		           }
+		           initFontSize+=1;
+		           RootContainer.css('font-size',initFontSize);
+		           Util.StorageSetter('font_size',initFontSize);
+		        });
+		        
+		        $('#small-font').click(function(){
+		           if(initFontSize<12){
+		                return ;   
+		           }
+		           initFontSize-=1;
+		           RootContainer.css('font-size',initFontSize);
+		           Util.StorageSetter('font_size',initFontSize);
+		        });
+		        
 		        Win.scroll(function(){
 		            DOM.bottom_nav.hide();
 		            DOM.top_nav.hide();
 		            DOM.font_container.hide();
+		            DOM.icon_font.removeClass('current');
 		        });
 		    }
 		    
